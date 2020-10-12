@@ -483,9 +483,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@tynsoft/common@^1.0.4":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@tynsoft/common/-/common-1.0.5.tgz#2058764a6a38a6757dc17770a0099599cf2008cb"
-  integrity sha512-go/WRacPTWbGvvYDeDTpIF5u+eVk4327RdCdcvfOy2xxgTLGDjErRn6PA/XFqk7ivTKC3BX3D+grw1vrfvuC7w==
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@tynsoft/common/-/common-1.0.6.tgz#db1f05a1d31001848885042d9d71a3b7b7295f87"
+  integrity sha512-oKzx52eahKf0QX7UerW2kU/bqhHWOtl0pnyOdHz2hvuaOeY9n7UKuYBGpsYeY+Y6+CB9NAuXHMH11WIUvA+OpQ==
   dependencies:
     "@types/cookie-session" "^2.0.41"
     "@types/express" "^4.17.8"
@@ -494,6 +494,7 @@
     express "^4.17.1"
     express-validator "^6.6.1"
     jsonwebtoken "^8.5.1"
+    node-nats-streaming "^0.3.2"
 
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
   version "7.1.10"
