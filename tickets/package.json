@@ -16,7 +16,7 @@
     ]
   },
   "dependencies": {
-    "@tynsoft/common": "^1.0.4",
+    "@tynsoft/common": "^1.0.7",
     "@types/cookie-session": "^2.0.41",
     "@types/express": "^4.17.8",
     "@types/jsonwebtoken": "^8.5.0",

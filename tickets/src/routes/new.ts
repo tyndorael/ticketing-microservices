@@ -3,12 +3,10 @@ import { body } from 'express-validator';
 import nats from 'node-nats-streaming';
 import { requireAuth, validateRequest } from '@tynsoft/common';
 import { Ticket } from '../models/ticket';
+import { TicketCreatedPublisher } from "../events/publishers/ticket-created-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
-
-/* const stan = nats.connect('ticketing', 'tickets', {
-  url: 'http://nats-srv:4222',
-}); */
 
 router.post(
   '/api/tickets',
@@ -30,15 +28,14 @@ router.post(
     });
     await ticket.save();
 
-    const event = {
-      type: 'ticket:created',
-      data: ticket,
-    };
-    /*stan.publish('ticket:created', JSON.stringify(event), () => {
-      console.log('Ticket creation event published');
-    });*/
+    await new TicketCreatedPublisher(natsWrapper.client).publish({
+      id: ticket.id,
+      title: ticket.title,
+      price: ticket.price,
+      userId: ticket.userId
+    });
 
-    res.status(201).send(ticket);
+    return res.status(201).send(ticket);
   }
 );
 
