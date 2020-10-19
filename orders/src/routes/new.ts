@@ -9,17 +9,19 @@ import {
 import { body } from 'express-validator';
 import { Order, OrderStatus } from "../models/order";
 import { Ticket } from "../models/ticket";
+import { OrderCreatedPublisher } from "../events/publishers/order-created-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
 const EXPIRATION_WINDOW_SECONDS = 15 * 60;
 
 router.post('/api/orders', requireAuth, [
-  body('ticketId')
-    .not()
-    .isEmpty()
-    .custom((input: string) => mongoose.Types.ObjectId.isValid(input))
-    .withMessage('Ticket Id must be provided')
+    body('ticketId')
+      .not()
+      .isEmpty()
+      .custom((input: string) => mongoose.Types.ObjectId.isValid(input))
+      .withMessage('Ticket Id must be provided')
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -51,9 +53,19 @@ router.post('/api/orders', requireAuth, [
 
     await order.save();
 
-    // TODO: publish an event saying that an order was created
+    // publish an event saying that an order was created
+    await new OrderCreatedPublisher(natsWrapper.client).publish({
+      id: order.id,
+      status: order.status,
+      userId: order.userId,
+      expiresAt: order.expiresAt.toISOString(),
+      ticket: {
+        id: ticket.id,
+        price: ticket.price
+      }
+    });
 
     res.status(201).send(order);
-});
+  });
 
 export { router as createOrderRouter };
