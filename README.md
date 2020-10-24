@@ -43,6 +43,14 @@ It's a React application with connection to the internal ingress.
 
 ## Local Development
 
+### Ingress
+
+Install ingress-nginx in the local cluster, so you can use the services.
+
+<https://kubernetes.github.io/ingress-nginx/deploy/>
+
+### Skaffold
+
 You need to have Skaffold <https://skaffold.dev> installed in your local machine. Then run:
 
 ```bash
@@ -59,3 +67,19 @@ for the auth service (and everything who use jwt token authentication) use the f
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=<string>
 ```
 
+### Host File
+
+Edit the file hosts for using a local dns. Add this line at the end of the file:
+
+```
+127.0.0.1 ticketing.dev
+```
+
+Finally, you can use this url for access to the frontend:
+
+<https://ticketing.dev/>
+
+if it says its not available write "thisisunsafe" and its going to reload automatically.
+
+More info:
+<https://www.liquidweb.com/kb/edit-host-file-windows-10/>
