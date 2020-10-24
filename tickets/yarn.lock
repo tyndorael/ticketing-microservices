@@ -482,10 +482,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@tynsoft/common@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@tynsoft/common/-/common-1.0.7.tgz#9d0c8d81baacfb9ddedc64aabfac4f7f62ff6dcc"
-  integrity sha512-G/PhqA7kzRxmwci5V24xgyVzWE4Tpq2FMXFxA5dMKrQwybfmPFwgmGBuJA/JJhq+HoV6tkOBiccWvCTaDvLpwg==
+"@tynsoft/common@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@tynsoft/common/-/common-1.0.9.tgz#31d3ccb975aa37922b2ec207697e10b030a69214"
+  integrity sha512-CHFyhclEPTNYFXwDZl6IIn9ShflYDR1O4uBP4Z/R/vl7V8b1vpVsGgs6sAeEUBx1FBTlhIFU58l3v0TIsKOk2g==
   dependencies:
     "@types/cookie-session" "^2.0.41"
     "@types/express" "^4.17.8"
